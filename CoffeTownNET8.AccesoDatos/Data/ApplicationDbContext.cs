@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+﻿using CoffeTownNET8.Modelos;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
 namespace CoffeTownNET8.Data
@@ -9,5 +10,7 @@ namespace CoffeTownNET8.Data
             : base(options)
         {
         }
+
+        public DbSet<Categoria> Categoria { get; set; }
     }
 }
