@@ -20,7 +20,7 @@
 <body class="hold-transition layout-top-nav layout-navbar-fixed layout-footer-fixed" style="background-color: #E6CCC8">
     <div class="wrapper">
         <div class="preloader flex-column justify-content-center align-items-center" style="background-color: #2b2b2b">
-            <img class="animation__shake img-circle" src="~/img/Logo_CoffeeTown.png" alt="LogoCoffeTown" height="250" width="250">
+            <img class="animation__wobble img-circle" src="~/img/Logo_CoffeeTown.png" alt="LogoCoffeTown" height="250" width="250">
         </div>
         <header class="main-header pt-2 px-2" style="background-color: #E6CCC8; border: none !important;">
             <nav class="layout-navbar-fixed navbar navbar-expand-lg p-3" style="background-color: #895D58" data-bs-theme="dark">
@@ -41,8 +41,9 @@
                                     <div class="btn-group" role="group">
                                         <button id="btnGroupDrop1" type="button" style="outline: none; box-shadow: 0 0 0 0.1rem black;" onFocus="this.style.boxShadow = '0 0 0 0.2rem black)'" class="btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></button>
                                         <div class="dropdown-menu" aria-labelledby="btnGroupDrop1" style="">
-                                            <a class="text-white dropdown-item" asp-area="Admin" asp-controller="Categorias" asp-action="Index">Categoria</a>
-                                            
+                                            <a class="text-white dropdown-item" asp-area="Admin" asp-controller="Categorias" asp-action="Index">Categorías<i class="mx-2 fas fa-th-large"></i></a>
+                                            <div class="dropdown-divider"></div>
+                                            <a class="text-white dropdown-item" asp-area="Admin" asp-controller="Categorias" asp-action="Index">Productos<i class="mx-2 nav-icon fas fa-box-open"></i></a>
                                         </div>
                                     </div>
                                 </div>

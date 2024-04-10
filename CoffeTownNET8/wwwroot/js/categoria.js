@@ -13,9 +13,9 @@ function cargarDatatable() {
             "datatype": "json"
         },
         "columns": [
-            { "data": "id", "width": "5%" },
-            { "data": "nombre", "width": "40%" },
-            { "data": "orden", "width": "10%" },
+            { "data": "id", "width": "10%" },
+            { "data": "nombre", "width": "30%" },
+            { "data": "orden", "width": "20%" },
             {
                 "data": "id",
                 "render": function (data) {

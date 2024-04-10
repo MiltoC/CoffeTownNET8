@@ -17,17 +17,21 @@
 else
 {
     <li class="nav-item">
-
-            <button class="btn btn-secondary my-2 my-sm-0" type="button" style="outline: none; box-shadow: 0 0 0 0.1rem black;" onFocus="this.style.boxShadow = '0 0 0 0.2rem black)'">
-                <a class="text-white" style="text-decoration: none" asp-area="Identity" asp-page="/Account/Register">Registrase</a>
-                <img src="~/img/icons8-registro-48.png" width="20" height="20 alt="Registrarse" />
-            </button>
+            <a class="text-white" style="text-decoration: none" asp-area="Identity" asp-page="/Account/Register">
+                <button class="btn btn-secondary my-2 my-sm-0" type="button" style="outline: none; margin-right: 15px; box-shadow: 0 0 0 0.1rem black;" onFocus="this.style.boxShadow = '0 0 0 0.2rem black)'">
+                    Registrase
+                    <i class="mx-2 fas fa-envelope"></i>
+                </button>
+            </a>
+            
     </li>
     <li class="nav-item">
-            <button class="btn btn-secondary my-2 my-sm-0 mx-3" type="submit" style="outline: none; box-shadow: 0 0 0 0.1rem black;" onFocus="this.style.boxShadow = '0 0 0 0.2rem black)'">
-                <a class="text-white" style="text-decoration: none" asp-area="Identity" asp-page="/Account/Login">Acceder</a>
-                <img src="~/img/icons8-login-48.png" width="20" height="20 alt="Iniciar sesión" />
-            </button>
+            <a class="text-white" style="text-decoration: none" asp-area="Identity" asp-page="/Account/Login">
+                <button class="btn btn-secondary my-2 my-sm-0" type="submit" style="outline: none; box-shadow: 0 0 0 0.1rem black;" onFocus="this.style.boxShadow = '0 0 0 0.2rem black)'">
+                    Acceder
+                    <i class="mx-2 fas fa-sign-in-alt"></i>
+                </button>
+            </a>
     </li>
 }
 </ul>
