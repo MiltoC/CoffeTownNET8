@@ -13,19 +13,18 @@ function cargarDatatable() {
             "datatype": "json"
         },
         "columns": [
-            { "data": "id", "width": "10%" },
-            { "data": "nombre", "width": "30%" },
-            { "data": "orden", "width": "20%" },
+            { "data": "nombre", "width": "30%", "className": "text-center" },
+            { "data": "orden", "width": "30%", "className": "text-center" },
             {
                 "data": "id",
                 "render": function (data) {
                     return `<div class="text-center">
-                                <a href="/Admin/Categorias/Edit/${data}" class="btn btn-success text-white" style="cursor:pointer; width:140px;">
-                                <i class="far fa-edit"></i> Editar
+                                <a href="/Admin/Categorias/Edit/${data}" class="btn btn-secondary" style="cursor:pointer; width:140px; font-size: 15px; outline: none; box-shadow: 0 0 0 0.1rem black;" onFocus="this.style.boxShadow = '0 0 0 0.2rem black)'">
+                                Editar <i class="far fa-edit"></i> 
                                 </a>
                                 &nbsp;
-                                <a onclick=Delete("/Admin/Categorias/Delete/${data}") class="btn btn-danger text-white" style="cursor:pointer; width:140px;">
-                                <i class="far fa-trash-alt"></i> Borrar
+                                <a onclick=Delete("/Admin/Categorias/Delete/${data}") class="btn btn-danger text-white" style="cursor:pointer; width:140px; font-size: 15px; outline: none; box-shadow: 0 0 0 0.1rem black;" onFocus="this.style.boxShadow = '0 0 0 0.2rem black)'">
+                                Borrar <i class="far fa-trash-alt"></i>
                                 </a>
                           </div>
                          `;
@@ -57,27 +56,38 @@ function cargarDatatable() {
 }
 
 function Delete(url) {
-    swal({
+    Swal.fire({
+        icon: "warning",
         title: "Esta seguro de borrar?",
         text: "Este contenido no se puede recuperar!",
-        type: "warning",
         showCancelButton: true,
+        cancelButtonText: `Cancelar <i class="fa fa-thumbs-down"></i>`,
         confirmButtonColor: "#DD6B55",
-        confirmButtonText: "Si, borrar!",
-        closeOnconfirm: true
-    }, function () {
-        $.ajax({
-            type: 'DELETE',
-            url: url,
-            success: function (data) {
-                if (data.success) {
-                    toastr.success(data.message);
-                    dataTable.ajax.reload();
+        confirmButtonText: `Si, eliminar! <i class="fa fa-thumbs-up"></i>`,
+        reverseButtons: true
+    }).then((result) => {
+        if (result.isConfirmed) {
+            $.ajax({
+                type: 'DELETE',
+                url: url,
+                success: function (data) {
+                    if (data.success) {
+                        Swal.fire({
+                            title: "Eliminado!",
+                            text: data.message,
+                            icon: "success"
+                        });
+                        dataTable.ajax.reload();
+                    }
+                    else {
+                        Swal.fire({
+                            title: "Error!",
+                            text: data.message,
+                            icon: "error"
+                        });
+                    }
                 }
-                else {
-                    toastr.error(data.message);
-                }
-            }
-        });
+            });
+        }
     });
 }
