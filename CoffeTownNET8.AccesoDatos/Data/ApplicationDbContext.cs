@@ -12,6 +12,8 @@ namespace CoffeTownNET8.Data
         }
 
         public DbSet<Categoria> Categoria { get; set; }
+
+        public DbSet<Producto> Producto { get; set; }
         public DbSet<AplicationUser> AplicationUser { get; set; }
     }
 }

@@ -19,6 +19,17 @@ namespace CoffeTownNET8.AccesoDatos.Data.Repository
             _db = db;
         }
 
+        public IEnumerable<SelectListItem> GetListaCategorias()
+        {
+            return _db.Categoria.Select(i => new SelectListItem()
+            {
+                Text = i.Nombre,
+                Value = i.Id.ToString()
+            }
+
+            );
+        }
+
         public void Update(Categoria categoria)
         {
             var objDesdeDb = _db.Categoria.FirstOrDefault(s => s.Id == categoria.Id);

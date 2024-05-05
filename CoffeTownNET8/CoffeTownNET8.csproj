@@ -24,4 +24,8 @@
     <ProjectReference Include="..\CoffeTownNET8.AccesoDatos\CoffeTownNET8.AccesoDatos.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="wwwroot\img\productos\" />
+  </ItemGroup>
+
 </Project>

@@ -8,11 +8,10 @@ using System.Threading.Tasks;
 
 namespace CoffeTownNET8.AccesoDatos.Data.Repository.IRepository
 {
-    public interface ICategoriaRepository : IRepository<Categoria>
+    public interface IProductoRepository : IRepository<Producto>
     {
-        IEnumerable<SelectListItem> GetListaCategorias();
 
-        void Update(Categoria categoria);
+        void Update(Producto producto);
 
     }
 }
