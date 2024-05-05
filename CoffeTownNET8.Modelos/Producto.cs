@@ -26,6 +26,7 @@ namespace CoffeTownNET8.Modelos
         [Column(TypeName = "decimal(18, 2)")]
         public decimal Precio { get; set; }
 
+        
         [Display(Name = "Imagen del producto")]
         [DataType(DataType.ImageUrl)]
         public string UrlImagen { get; set; }
