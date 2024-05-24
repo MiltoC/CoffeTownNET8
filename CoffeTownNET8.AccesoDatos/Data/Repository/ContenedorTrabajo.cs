@@ -17,11 +17,13 @@ namespace CoffeTownNET8.AccesoDatos.Data.Repository
             _db = db;
             Categoria = new CategoriaRepository(_db);
             Producto = new ProductoRepository(_db);
+            Slider = new SliderRepository(_db);
         }
 
         public ICategoriaRepository Categoria { get; private set; }
 
         public IProductoRepository Producto { get; private set; }
+        public ISliderRepository Slider { get; private set; }
 
         public void Dispose()
         {

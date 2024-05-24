@@ -44,6 +44,9 @@
                                             <a class="text-white dropdown-item" asp-area="Admin" asp-controller="Categorias" asp-action="Index">Categorías<i class="mx-2 fas fa-th-large"></i></a>
                                             <div class="dropdown-divider"></div>
                                             <a class="text-white dropdown-item" asp-area="Admin" asp-controller="Productos" asp-action="Index">Productos<i class="mx-2 nav-icon fas fa-box-open"></i></a>
+                                            <div class="dropdown-divider"></div>
+                                            <a class="text-white dropdown-item" asp-area="Admin" asp-controller="Sliders" asp-action="Index">Sliders<i class="mx-2 fas fa-th-large"></i></a>
+
                                         </div>
                                     </div>
                                 </div>
@@ -60,6 +63,13 @@
                     </div>
                 </div>
             </nav>
+
+            <!--Aquí vista parcial slider-->
+            @if (ViewBag.IsHome == true)
+            {
+               // <partial name="_Slider" />
+            }
+
         </header>
         <div class="container" style="margin-top: 140px;">
             <main role="main" class="pb-3">
