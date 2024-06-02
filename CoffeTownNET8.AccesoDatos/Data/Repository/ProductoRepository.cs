@@ -1,6 +1,7 @@
 ﻿using CoffeTownNET8.AccesoDatos.Data.Repository.IRepository;
 using CoffeTownNET8.Data;
 using CoffeTownNET8.Modelos;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,6 +17,17 @@ namespace CoffeTownNET8.AccesoDatos.Data.Repository
         public ProductoRepository(ApplicationDbContext db) : base(db)
         {
             _db = db;
+        }
+
+        public IEnumerable<SelectListItem> GetListaProductos()
+        {
+            return _db.Producto.Select(i => new SelectListItem()
+            {
+                Text = i.Nombre,
+                Value = i.Id.ToString()
+            }
+
+           );
         }
 
         public void Update(Producto producto)

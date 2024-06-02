@@ -18,5 +18,9 @@ namespace CoffeTownNET8.Data
         public DbSet<Slider> Slider { get; set; }
 
         public DbSet<AplicationUser> AplicationUser { get; set; }
+
+        public DbSet<Pedido> Pedido { get; set; }
+
+        public DbSet<Venta> Venta { get; set; }
     }
 }

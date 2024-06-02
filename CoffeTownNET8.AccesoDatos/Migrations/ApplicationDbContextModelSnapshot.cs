@@ -42,6 +42,37 @@ namespace CoffeTownNET8.Data.Migrations
                     b.ToTable("Categoria");
                 });
 
+            modelBuilder.Entity("CoffeTownNET8.Modelos.Pedido", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("Cantidad")
+                        .HasColumnType("int");
+
+                    b.Property<string>("FechaVenta")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<float>("MontoTotal")
+                        .HasColumnType("real");
+
+                    b.Property<string>("Nombre")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("ProductoId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ProductoId");
+
+                    b.ToTable("Pedido");
+                });
+
             modelBuilder.Entity("CoffeTownNET8.Modelos.Producto", b =>
                 {
                     b.Property<int>("Id")
@@ -95,6 +126,37 @@ namespace CoffeTownNET8.Data.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Slider");
+                });
+
+            modelBuilder.Entity("CoffeTownNET8.Modelos.Venta", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("Cantidad")
+                        .HasColumnType("int");
+
+                    b.Property<string>("FechaVenta")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<float>("MontoTotal")
+                        .HasColumnType("real");
+
+                    b.Property<string>("Nombre")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("ProductoId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ProductoId");
+
+                    b.ToTable("Venta");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
@@ -331,6 +393,17 @@ namespace CoffeTownNET8.Data.Migrations
                     b.HasDiscriminator().HasValue("AplicationUser");
                 });
 
+            modelBuilder.Entity("CoffeTownNET8.Modelos.Pedido", b =>
+                {
+                    b.HasOne("CoffeTownNET8.Modelos.Producto", "Producto")
+                        .WithMany()
+                        .HasForeignKey("ProductoId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Producto");
+                });
+
             modelBuilder.Entity("CoffeTownNET8.Modelos.Producto", b =>
                 {
                     b.HasOne("CoffeTownNET8.Modelos.Categoria", "Categoria")
@@ -340,6 +413,17 @@ namespace CoffeTownNET8.Data.Migrations
                         .IsRequired();
 
                     b.Navigation("Categoria");
+                });
+
+            modelBuilder.Entity("CoffeTownNET8.Modelos.Venta", b =>
+                {
+                    b.HasOne("CoffeTownNET8.Modelos.Producto", "Producto")
+                        .WithMany()
+                        .HasForeignKey("ProductoId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Producto");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>

@@ -37,6 +37,38 @@ namespace CoffeTownNET8.Areas.Cliente.Controllers
             return View(productoDesdeBd);
         }
 
+        [HttpGet]
+        public IActionResult Pedido()
+        {
+            PedidoVM pedidoVM = new PedidoVM()
+            {
+                Pedido = new CoffeTownNET8.Modelos.Pedido(),
+                ListaProductos = _contenedorTrabajo.Producto.GetListaProductos()
+            };
+
+            return View(pedidoVM);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult Pedido(PedidoVM pedidoVM)
+        {
+            var productoFromDb = _contenedorTrabajo.Producto.Get(pedidoVM.Pedido.ProductoId);
+            if (ModelState.IsValid)
+            {
+                pedidoVM.Pedido.MontoTotal = (float)(pedidoVM.Pedido.Cantidad * productoFromDb.Precio);
+
+                pedidoVM.Pedido.FechaVenta = DateTime.Now.ToString();
+                _contenedorTrabajo.Pedido.Add(pedidoVM.Pedido);
+                _contenedorTrabajo.Save();
+
+                TempData["PedidoCreado"] = "Su pedido estara listo en unos momentos";
+                return RedirectToAction(nameof(Index));
+            }
+            pedidoVM.ListaProductos = _contenedorTrabajo.Producto.GetListaProductos();
+            return View(pedidoVM);
+        }
+
         public IActionResult Privacy()
         {
             return View();

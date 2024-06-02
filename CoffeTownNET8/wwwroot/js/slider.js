@@ -13,8 +13,8 @@ function cargarDatatable() {
             "datatype": "json"
         },
         "columns": [
-            { "data": "id", "width": "5%" },
-            { "data": "nombre", "width": "20%" },
+            { "data": "id", "width": "5%", "className": "text-center" },
+            { "data": "nombre", "width": "20%", "className": "text-center" },
             /*EMPIEZA EDICION ESTADO*/
             {
                 "data": "estado",
@@ -24,14 +24,16 @@ function cargarDatatable() {
                     } else {
                         return "Inactivo"
                     }
-                }, "width": "15%"
+                }, "width": "15%",
+                "className": "text-center"
             },
             /*CIERRA EDICION ESTADO*/
             {
                 "data": "urlImagen",
                 "render": function (imagen) {
-                    return `<img src="../${imagen}" width="120">`
-                }, "width": "20%"
+                    return `<img src="../${imagen}">`
+                }, "width": "20%",
+                "className": "text-center slider-img-cell"
             },
             {
                 "data": "id",

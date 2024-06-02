@@ -10,6 +10,7 @@ namespace CoffeTownNET8.AccesoDatos.Data.Repository.IRepository
 {
     public interface IProductoRepository : IRepository<Producto>
     {
+        IEnumerable<SelectListItem> GetListaProductos();
 
         void Update(Producto producto);
 

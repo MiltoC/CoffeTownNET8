@@ -13,6 +13,10 @@ namespace CoffeTownNET8.AccesoDatos.Data.Repository.IRepository
         IProductoRepository Producto { get; }
         ISliderRepository Slider { get; }
 
+        IPedidoRepository Pedido { get; }
+
+        IVentaRepository Venta { get; }
+
         void Save();
     }
 }

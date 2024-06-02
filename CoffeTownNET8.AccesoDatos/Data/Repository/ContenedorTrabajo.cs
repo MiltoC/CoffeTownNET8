@@ -1,5 +1,6 @@
 ﻿using CoffeTownNET8.AccesoDatos.Data.Repository.IRepository;
 using CoffeTownNET8.Data;
+using CoffeTownNET8.Modelos;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,12 +19,19 @@ namespace CoffeTownNET8.AccesoDatos.Data.Repository
             Categoria = new CategoriaRepository(_db);
             Producto = new ProductoRepository(_db);
             Slider = new SliderRepository(_db);
+            Pedido = new PedidoRepository(_db);
+            Venta = new VentaRepository(_db);
         }
 
         public ICategoriaRepository Categoria { get; private set; }
 
         public IProductoRepository Producto { get; private set; }
+
         public ISliderRepository Slider { get; private set; }
+
+        public IPedidoRepository Pedido { get; private set; }
+
+        public IVentaRepository Venta { get; private set; }
 
         public void Dispose()
         {

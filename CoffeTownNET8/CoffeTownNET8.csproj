@@ -27,6 +27,7 @@
   <ItemGroup>
     <Folder Include="wwwroot\img\sliders\" />
     <Folder Include="wwwroot\img\productos\" />
+    <Folder Include="wwwroot\videos\" />
   </ItemGroup>
 
 </Project>
