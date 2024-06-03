@@ -1,9 +1,12 @@
 ﻿using CoffeTownNET8.AccesoDatos.Data.Repository.IRepository;
 using CoffeTownNET8.Modelos.ViewModels;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace CoffeTownNET8.Areas.Admin.Controllers
 {
+    [Authorize(Roles = "Administrador")]
+
     [Area("Admin")]
     public class ProductosController : Controller
     {

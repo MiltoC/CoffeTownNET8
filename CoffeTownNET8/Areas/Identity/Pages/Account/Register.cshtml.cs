@@ -11,6 +11,7 @@ using System.Text.Encodings.Web;
 using System.Threading;
 using System.Threading.Tasks;
 using CoffeTownNET8.Modelos;
+using CoffeTownNET8.Utilidades;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
@@ -30,13 +31,15 @@ namespace CoffeTownNET8.Areas.Identity.Pages.Account
         private readonly IUserEmailStore<AplicationUser> _emailStore;
         private readonly ILogger<RegisterModel> _logger;
         private readonly IEmailSender _emailSender;
+        private readonly RoleManager<IdentityRole> _roleManager;
 
         public RegisterModel(
             UserManager<AplicationUser> userManager,
             IUserStore<AplicationUser> userStore,
             SignInManager<AplicationUser> signInManager,
             ILogger<RegisterModel> logger,
-            IEmailSender emailSender)
+            IEmailSender emailSender,
+            RoleManager<IdentityRole> roleManager)
         {
             _userManager = userManager;
             _userStore = userStore;
@@ -44,6 +47,7 @@ namespace CoffeTownNET8.Areas.Identity.Pages.Account
             _signInManager = signInManager;
             _logger = logger;
             _emailSender = emailSender;
+            _roleManager = roleManager;
         }
 
         /// <summary>
@@ -138,19 +142,51 @@ namespace CoffeTownNET8.Areas.Identity.Pages.Account
 
                 if (result.Succeeded)
                 {
-                    _logger.LogInformation("User created a new account with password.");
+                    //roles si existen si no se crean
+                    if(!await _roleManager.RoleExistsAsync(CNT.Administrador))
+                    {
+                        await _roleManager.CreateAsync(new IdentityRole(CNT.Administrador));
+                        await _roleManager.CreateAsync(new IdentityRole(CNT.Registrado));
+                        await _roleManager.CreateAsync(new IdentityRole(CNT.Cliente));
+                    }
 
-                    var userId = await _userManager.GetUserIdAsync(user);
-                    var code = await _userManager.GenerateEmailConfirmationTokenAsync(user);
-                    code = WebEncoders.Base64UrlEncode(Encoding.UTF8.GetBytes(code));
-                    var callbackUrl = Url.Page(
-                        "/Account/ConfirmEmail",
-                        pageHandler: null,
-                        values: new { area = "Identity", userId = userId, code = code, returnUrl = returnUrl },
-                        protocol: Request.Scheme);
+                    //obtener rol seleccionado
 
-                    await _emailSender.SendEmailAsync(Input.Email, "Confirm your email",
-                        $"Please confirm your account by <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>clicking here</a>.");
+                    string rol = Request.Form["radUsuarioRole"].ToString();
+
+                    //vidar si el rol seleccionado es admin si no lo agregamos
+
+                    if(rol == CNT.Administrador)
+                    {
+                        await _userManager.AddToRoleAsync(user, CNT.Administrador);
+                    }
+                    else
+                    {
+                        if(rol == CNT.Registrado) 
+                        { 
+                            await _userManager.AddToRoleAsync(user, CNT.Registrado);
+
+                        }
+                        else
+                        {
+                            await _userManager.AddToRoleAsync(user, CNT.Cliente);
+
+                        }
+                    }
+
+                    //_logger.LogInformation("User created a new account with password.");
+
+                    //var userId = await _userManager.GetUserIdAsync(user);
+                    //var code = await _userManager.GenerateEmailConfirmationTokenAsync(user);
+                    //code = WebEncoders.Base64UrlEncode(Encoding.UTF8.GetBytes(code));
+                    //var callbackUrl = Url.Page(
+                    //    "/Account/ConfirmEmail",
+                    //    pageHandler: null,
+                    //    values: new { area = "Identity", userId = userId, code = code, returnUrl = returnUrl },
+                    //    protocol: Request.Scheme);
+
+                    //await _emailSender.SendEmailAsync(Input.Email, "Confirm your email",
+                    //    $"Please confirm your account by <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>clicking here</a>.");
 
                     if (_userManager.Options.SignIn.RequireConfirmedAccount)
                     {

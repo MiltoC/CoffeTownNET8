@@ -5,6 +5,8 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace CoffeTownNET8.Areas.Admin.Controllers
 {
+    [Authorize(Roles = "Administrador")]
+
     [Area("Admin")]
     public class SlidersController : Controller
     {

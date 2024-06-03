@@ -21,6 +21,7 @@ namespace CoffeTownNET8.AccesoDatos.Data.Repository
             Slider = new SliderRepository(_db);
             Pedido = new PedidoRepository(_db);
             Venta = new VentaRepository(_db);
+            Usuario = new UsuarioRepository(_db);
         }
 
         public ICategoriaRepository Categoria { get; private set; }
@@ -32,6 +33,8 @@ namespace CoffeTownNET8.AccesoDatos.Data.Repository
         public IPedidoRepository Pedido { get; private set; }
 
         public IVentaRepository Venta { get; private set; }
+
+        public IUsuarioRepository Usuario { get; private set; }
 
         public void Dispose()
         {

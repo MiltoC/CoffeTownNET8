@@ -17,6 +17,8 @@ namespace CoffeTownNET8.AccesoDatos.Data.Repository.IRepository
 
         IVentaRepository Venta { get; }
 
+        IUsuarioRepository Usuario { get; }
+
         void Save();
     }
 }

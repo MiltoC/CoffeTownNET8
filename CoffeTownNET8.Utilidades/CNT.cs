@@ -8,8 +8,9 @@ namespace CoffeTownNET8.Utilidades
 {
     public class CNT
     {
-        public const string Administrador = "Admin";
+        public const string Administrador = "Administrador";
         public const string Registrado = "Registrado";
+        public const string Cliente = "Cliente";
 
     }
 }

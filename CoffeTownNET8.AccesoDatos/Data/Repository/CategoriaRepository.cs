@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace CoffeTownNET8.AccesoDatos.Data.Repository
 {
-    internal class CategoriaRepository : Repository<Categoria>, ICategoriaRepository
+    public class CategoriaRepository : Repository<Categoria>, ICategoriaRepository
     {
         private readonly ApplicationDbContext _db;
 
