@@ -12,7 +12,7 @@ namespace CoffeTownNET8.Modelos
         [Key]
         public int Id { get; set; }
         [Required(ErrorMessage ="El nombre es obligatorio!")]
-        [RegularExpression(@"^[A-Za-záéíóúÁÉÍÓÚñÑ><\/]*$", ErrorMessage = "Solo se permiten letras!")]
+        [RegularExpression(@"^[A-Za-záéíóúÁÉÍÓÚñÑ\s]*$", ErrorMessage = "Solo se permiten letras y espacios.")]
         [Display(Name ="Tipo de café")]
         public string Nombre { get; set; }
         [Display(Name = "Orden de visualización")]

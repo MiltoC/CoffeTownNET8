@@ -1,4 +1,5 @@
 ﻿@model CoffeTownNET8.Modelos.ViewModels.HomeVM
+@using CoffeTownNET8.Utilidades
 
 @{
     ViewData["Title"] = "Inicio";
@@ -109,6 +110,9 @@
     </div>
 </div>
 
-<a asp-action="Pedido" class="floating-btn btn mt-2" data-toggle="tooltip" data-placement="left" title="Realizar pedido" style="background-color: #c96442; color: white; font-size: 16px; outline: none; box-shadow: 0 0 0 0.1rem black;" onFocus="this.style.boxShadow = '0 0 0 0.2rem black)'">
-    <i class="fa fa-shopping-cart" aria-hidden="true"></i>
-</a>
+
+@if(User.IsInRole(CNT.Administrador) || User.IsInRole(CNT.Cliente)){
+    <a asp-action="Pedido" class="floating-btn btn mt-2" data-toggle="tooltip" data-placement="left" title="Realizar pedido" style="background-color: #c96442; color: white; font-size: 16px; outline: none; box-shadow: 0 0 0 0.1rem black;" onFocus="this.style.boxShadow = '0 0 0 0.2rem black)'">
+        <i class="fa fa-shopping-cart" aria-hidden="true"></i>
+    </a>
+}
