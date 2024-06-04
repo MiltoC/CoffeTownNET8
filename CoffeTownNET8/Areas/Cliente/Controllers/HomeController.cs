@@ -2,7 +2,10 @@ using CoffeTownNET8.AccesoDatos.Data.Repository.IRepository;
 using CoffeTownNET8.Modelos.ViewModels;
 using CoffeTownNET8.Models;
 using Microsoft.AspNetCore.Mvc;
+using MimeKit;
 using System.Diagnostics;
+using MailKit.Net.Smtp;
+using MailKit.Security;
 
 namespace CoffeTownNET8.Areas.Cliente.Controllers
 {
